@@ -11,7 +11,10 @@ export const config = {
     "blog": defineCollection({
         type: "content",
         schema: z.object({
-            // TODO:
+            title: z.string(),
+            date: z.string(),
+            category: z.string(),
+            thumbnail: z.string().optional()
         })
     }),
     "docs": defineCollection({

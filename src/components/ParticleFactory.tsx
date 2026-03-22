@@ -32,7 +32,7 @@ const logos = [
   { label: "originium_arts", url: "/images/03-world/originium_arts.png" },
   { label: "originiums", url: "/images/03-world/originiums.png" },
   { label: "reunion", url: "/images/03-world/reunion.png" },
-  { label: "island", url: "/images/rhodes_island.png" },
+  { label: "island", url: "/images/logo.png" },
 ];
 
 // 辅助函数

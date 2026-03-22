@@ -322,9 +322,9 @@
         // 更小的延迟间隔，使动画更流畅
         animation-delay: #{$i * 0.02}s;
         // 增加随机性范围
-        --target-scale: #{0.2 + math.div(random(80), 100)};
+        --target-scale: #{0.2 + math.div(math.floor(math.random() * 80), 100)};
         // 随机动画持续时间
-        animation-duration: #{0.3 + math.div(random(20), 100)}s;
+        animation-duration: #{0.3 + math.div(math.floor(math.random() * 20), 100)}s;
       }
     }
   }

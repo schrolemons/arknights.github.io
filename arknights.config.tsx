@@ -9,7 +9,7 @@ import {
 const base = import.meta.env.BASE_URL;
 
 export default {
-  title: "Arknights",
+  title: "SCHNIE:ARK",
   description: "",
   language: "zh",
   bgm: {
@@ -33,25 +33,24 @@ export default {
     items: [
       { title: "INDEX", subtitle: "首页", href: base + "#index" },
       { title: "INFORMATION", subtitle: "情报", href: base + "#information" },
-      { title: "OPERATOR", subtitle: "干员", href: base + "#operator" },
+      { title: "OPERATOR", subtitle: "角色", href: base + "#operator" },
       { title: "WORLD", subtitle: "设定", href: base + "#world" },
       { title: "MEDIA", subtitle: "万象", href: base + "#media" },
       { title: "MORE", subtitle: "更多内容", href: base + "#more" },
     ],
     toolbox: {
-      Skland: "https://www.skland.com/",
-      Bilibili: "https://space.bilibili.com/28606851",
+      Bilibili: "https://b23.tv/e1vviXs",
       WeChat: "https://weixin.qq.com/",
       Weibo: "https://weibo.com/",
       TapTap: "https://www.taptap.cn/",
-      GitHub: "https://github.com/Yue-plus/astro-arknights",
+      GitHub: "https://github.com/schrolemons/arknights.github.io",
     },
     ownerInfo: {
-      name: "Yue_plus",
-      slogan: "一切不如意终将远去，未来风景独好。",
+      name: "SCHNIE.",
+      slogan: "遇见不一样的你，遇见更好的自己。",
       footerLinks: [
-        { label: "GitHub", url: "https://github.com/Yue-plus" },
-        { label: "Bilibili", url: "https://space.bilibili.com/28606851" },
+        { label: "GitHub", url: "https://github.com/schrolemons" },
+        { label: "Bilibili", url: "https://b23.tv/e1vviXs" },
       ],
     },
   },
@@ -71,7 +70,6 @@ export default {
       title: "SCHNIE:ARK",
       subtitle: "POWERED BY RHODES ISLAND",
       url: "HTTPS://ARK.SCH-NIE.COM/",
-      copyright: <CopyrightMini className="text-white" />,
       heroActions: [
         {
           icon: <IconArchive className="w-full h-auto pointer-events-none" />,
@@ -105,7 +103,7 @@ export default {
           icon: <IconGitHub className="w-full h-auto pointer-events-none" />,
           label: "GitHub",
           subLabel: "Repository",
-          href: "https://github.com/Yue-plus/astro-arknights",
+          href: "https://github.com/schrolemons/arknights.github.io",
           className:
             "text-white bg-black border-[#333] hover:border-white font-benderBold",
         },
@@ -119,7 +117,7 @@ export default {
             title: "用户文档",
             subtitle: "User Documentation",
             date: "2024 // 08 / 21",
-            url: "HTTPS://ARKNIGHTS.ASTRO.YUE.ZONE/",
+            url: "HTTPS://ARK.SCH-NIE.COM/",
             href: base + "docs/",
             image: base + "info-swiper/UserDocumentation.jpg",
           },
@@ -127,7 +125,7 @@ export default {
             title: "开发者文档",
             subtitle: "Developer Documentation",
             date: "2024 // 08 / 21",
-            url: "HTTPS://ARKNIGHTS.ASTRO.YUE.ZONE/",
+            url: "HTTPS://ARK.SCH-NIE.COM/",
             href: base + "docs/",
             image: base + "info-swiper/DeveloperDocumentation.jpg",
           },
@@ -135,7 +133,7 @@ export default {
             title: "博客 - Blog",
             // subtitle: "Blog",
             date: "2024 // 08 / 21",
-            url: "HTTPS://ARKNIGHTS.ASTRO.YUE.ZONE/",
+            url: "HTTPS://ARK.SCH-NIE.COM/",
             href: base + "blog/",
             image: base + "info-swiper/Blog.jpg",
           },
