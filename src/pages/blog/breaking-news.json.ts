@@ -38,15 +38,8 @@ export async function GET({params, request}: APIContext) {
 
     return new Response(JSON.stringify([
         {
-            name: "最新",
-            list: allBlog.reverse().slice(0, 3).map((item) => {
-                return {
-                    title: item.data.title ?? item.id,
-                    date: formatDate(item.data.date ?? item.id.substring(0, 9)),
-                    href: base + "blog/" + item.slug,
-                    category: item.data.category ?? "未分类"
-                }
-            }) as BreakingNewsItemProps[]
+            name: "公告",
+            list: getItemsByCategory("公告")
         },
         {name: "世界观", list: getItemsByCategory("世界观")},
         {name: "事件", list: getItemsByCategory("事件")},

@@ -30,7 +30,7 @@ const AK_CARDS: AkCard[] = [
       <img
         src="/images/passport.png"
         alt="Repository"
-        className="min-w-8 h-8"
+        className="min-w-6 h-6"
       />
     ),
     onClick: () =>
@@ -45,7 +45,7 @@ const AK_CARDS: AkCard[] = [
       <img
         src="/images/05-more/icon-integrated_strategies.png"
         alt="Documentation"
-        className="min-w-8 h-8"
+        className="min-w-6 h-6"
       />
     ),
     onClick: () =>
@@ -60,7 +60,7 @@ const AK_CARDS: AkCard[] = [
       <img
         src="/images/05-more/icon-terra_historicus.png"
         alt="Author Profile"
-        className="min-w-8 h-8"
+        className="min-w-6 h-6"
       />
     ),
     onClick: () => window.open("https://github.com/Zhongye1", "_blank"),
@@ -140,11 +140,11 @@ export default function More() {
               >
                 {/* ... 卡片内部代码保持不变 ... */}
                 <div className="absolute inset-0 z-0">
-                  <div className="min-w-full h-full bg-black">
+                  <div className="min-w-full h-full bg-black flex items-center justify-center">
                     <img
                       src={card.img}
                       alt={card.title}
-                      className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110"
+                      className="w-3/4 h-3/4 object-contain opacity-50 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-110"
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
