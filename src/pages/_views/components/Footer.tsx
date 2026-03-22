@@ -69,7 +69,7 @@ export default function Footer() {
 
         <div className="text-[10px] text-[#666] flex flex-col md:items-end">
           <p>Version: 0.0.1 | Based on MIT License</p>
-          <p>Copyright © 2024-present Yue_plus | Shanghai, China</p>
+          <p>Copyright © 2026-present Schrolemons</p>
         </div>
       </div>
     </div>

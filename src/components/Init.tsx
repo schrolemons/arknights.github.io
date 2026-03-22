@@ -139,7 +139,7 @@ export function Init() {
 
                 <div className="flex items-center justify-center mb-[2vw]">
                     <TitleArknights
-                        className={`w-[13vw] h-[17vw] max-w-full text-[rgb(164,164,164)]`}
+                        className={`w-[13vw] h-[17vw] max-w-full`}
                     />
                 </div>
 
@@ -155,7 +155,7 @@ export function Init() {
                             }`}
                             style={{ color: commonColor }}
                         >
-                            <span>© YUE_PLUS</span>
+                            <span>© Schrolemons </span>
                         </div>
                         <div className={`flex-grow ${isPortrait ? 'w-full' : ''} pl-[5vw] pr-[5.5vw]`}>
                             <div className="relative h-[0.3vw] flex items-center" style={{ backgroundColor: 'transparent' }}>
@@ -173,9 +173,9 @@ export function Init() {
                                     <span>{`LOADING - ${Math.round(progress)}%`}</span>
                                 </div>
                                 <div className={`flex items-center text-[0.8vw]`} style={{ color: commonColor }}>
-                                    <span>ARKNIGHTS</span>
+                                    <span>ARK.SCH-NIE.COM</span>
                                     <span className="mx-[0.8vw]">//</span>
-                                    <span>https://github.com/Yue-plus/astro-arknights</span>
+                                    <span>https://github.com/schrolemons/arknights.github.io</span>
                                 </div>
                             </div>
                         </div>

@@ -100,9 +100,12 @@ export interface SvgIconProps {
 }
 
 export function TitleArknights(props: SvgIconProps) {
-    return <svg {...props} viewBox="0 0 254 119">
-        <use xlinkHref="#svg_def-title_arknights"/>
-    </svg>
+    return <img 
+        {...props} 
+        src="/images/logo.png" 
+        alt="Logo"
+        style={{ width: props.style?.width || '13vw', height: 'auto', maxWidth: '100%' }}
+    />
 }
 
 

@@ -9,7 +9,7 @@ import {
 const base = import.meta.env.BASE_URL;
 
 export default {
-  title: "111Arknights",
+  title: "SCHNIE:Ark",
   description: "",
   language: "zh",
   bgm: {
@@ -35,7 +35,7 @@ export default {
       { title: "INFORMATION", subtitle: "情报", href: base + "#information" },
       { title: "OPERATOR", subtitle: "干员", href: base + "#operator" },
       { title: "WORLD", subtitle: "设定", href: base + "#world" },
-      { title: "MEDIA", subtitle: "泰拉万象", href: base + "#media" },
+      { title: "MEDIA", subtitle: "万象", href: base + "#media" },
       { title: "MORE", subtitle: "更多内容", href: base + "#more" },
     ],
     toolbox: {
@@ -56,7 +56,7 @@ export default {
     },
   },
   pageTracker: {
-    microInfo: "ARKNIGHTS",
+    microInfo: "SCHNIE:ARK",
     labels: [
       "HOMEPAGE",
       "INFORMATION",
@@ -68,10 +68,10 @@ export default {
   },
   rootPage: {
     INDEX: {
-      title: "ARKNIGHTS",
-      subtitle: "RHODES ISLAND",
-      url: "HTTPS://ARKNIGHTS.ASTRO.YUE.ZONE/",
-      copyright: <CopyrightMini className="pointer-events-none" />,
+      title: "SCHNIE:ARK",
+      subtitle: "POWERED BY RHODES ISLAND",
+      url: "HTTPS://ARK.SCH-NIE.COM/",
+      copyright: null,
       heroActions: [
         {
           icon: <IconArchive className="w-full h-auto pointer-events-none" />,
