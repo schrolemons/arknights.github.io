@@ -9,7 +9,7 @@ import {
 const base = import.meta.env.BASE_URL;
 
 export default {
-  title: "SCHNIE:Ark",
+  title: "Arknights",
   description: "",
   language: "zh",
   bgm: {
@@ -71,7 +71,7 @@ export default {
       title: "SCHNIE:ARK",
       subtitle: "POWERED BY RHODES ISLAND",
       url: "HTTPS://ARK.SCH-NIE.COM/",
-      copyright: null,
+      copyright: <CopyrightMini className="text-white" />,
       heroActions: [
         {
           icon: <IconArchive className="w-full h-auto pointer-events-none" />,
