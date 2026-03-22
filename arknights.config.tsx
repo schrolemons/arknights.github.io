@@ -16,7 +16,7 @@ export default {
     autoplay: false,
 
     // https://web.hycdn.cn/arknights/official/_next/static/media/audio/bgm.ea4286.mp3
-    // src: base + "audios/bgm.mp3",
+    src: base + "audios/bgm.mp3",
   },
   navbar: {
     logo: {
