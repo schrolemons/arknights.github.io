@@ -33,6 +33,7 @@ export type ArknightsConfig = {
   bgm: {
     autoplay: boolean;
     src: string;
+    loop?: boolean;
   };
   navbar: {
     logo: {
