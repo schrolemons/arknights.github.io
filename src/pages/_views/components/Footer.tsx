@@ -12,7 +12,7 @@ export default function Footer() {
         </a>
         <span className="text-[#333]">|</span>
         <a
-          href="https://github.com/Yue-plus/astro-arknights"
+          href="https://github.com/schrolemons/arknights.github.io/"
           className="hover:text-ark-blue transition-colors"
         >
           GitHub Repository
@@ -33,10 +33,17 @@ export default function Footer() {
         </a>
         <span className="text-[#333]">|</span>
         <a
+            href="https://github.com/Schrolemons"
+            className="hover:text-ark-blue transition-colors"
+        >
+          Author: Schrolemons
+        </a>
+        <span className="text-[#333]">|</span>
+        <a
           href="https://github.com/Yue-plus"
           className="hover:text-ark-blue transition-colors"
         >
-          Author: Yue_plus
+          Template Provider: Yue_plus
         </a>
         <span className="text-[#333]">|</span>
         <a

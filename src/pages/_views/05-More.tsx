@@ -63,7 +63,7 @@ const AK_CARDS: AkCard[] = [
         className="min-w-6 h-6"
       />
     ),
-    onClick: () => window.open("https://github.com/Zhongye1", "_blank"),
+    onClick: () => window.open("https://github.com/schrolemons", "_blank"),
   },
 ];
 
