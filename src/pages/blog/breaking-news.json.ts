@@ -22,7 +22,11 @@ export async function GET({params, request}: APIContext) {
     const getItemsByCategory = (category: string) => {
         return allBlog
             .filter(item => item.data.category === category)
-            .reverse()
+            .sort((a, b) => {
+                const titleA = (a.data.title ?? a.id).toLowerCase();
+                const titleB = (b.data.title ?? b.id).toLowerCase();
+                return titleA.localeCompare(titleB);
+            })
             .slice(0, 3)
             .map((item) => ({
                 title: item.data.title ?? item.id,

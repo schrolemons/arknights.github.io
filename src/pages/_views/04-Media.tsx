@@ -9,7 +9,7 @@ import { directions } from "../../components/store/lineDecoratorStore";
 import GalleryDetails from "./components/GalleryDetails.tsx"; // 引入刚才创建的组件
 
 // 定义子分类类型
-type Category = "monster_siren" | "gallery" | "operator" | "video";
+type Category = "books" | "gallery" | "website" | "Question_Set";
 
 interface CategoryData {
   id: Category;
@@ -22,12 +22,12 @@ interface CategoryData {
 
 const CATEGORIES: CategoryData[] = [
   {
-    id: "monster_siren",
-    en: "MONSTER SIREN",
-    cn: "塞壬唱片",
-    logo: "/images/04-media/logo_monster_siren.27beba82.png",
-    activeImg: "/images/04-media/monster_siren_active.8f01230d.png",
-    desc: "一个已知或未知的世界\nHTTPS://AK.HYPERGRYPH.COM/",
+    id: "books",
+    en: "SEABLUE REVERY",
+    cn: "第九边缘：溯梦蓝海",
+    logo: "/images/04-media/logo_books.27beba82.png",
+    activeImg: "/images/04-media/books_active.8f01230d.png",
+    desc: "第九边缘官方作品\nHTTPS://ARK.SCH-NIE.COM/",
   },
   {
     id: "gallery",
@@ -35,30 +35,30 @@ const CATEGORIES: CategoryData[] = [
     cn: "插画珍藏",
     logo: "/images/04-media/logo_gallery.08a04a01.png",
     activeImg: "/images/04-media/gallery_active.d45cfc72.png",
-    desc: "记录大地上的点滴瞬间\nHTTPS://AK.HYPERGRYPH.COM/",
+    desc: "记录在这篇大地上的点滴瞬间\nHTTPS://ARK.SCH-NIE.COM/",
   },
   {
-    id: "operator",
-    en: "OPERATOR",
-    cn: "干员档案",
+    id: "website",
+    en: "WEBSITE",
+    cn: "网站构建",
     logo: "/images/04-media/logo_operator.c6543e50.png",
     activeImg: "/images/04-media/operator_active.d697ef2d.png",
-    desc: "罗德岛核心干员机密资料\nHTTPS://AK.HYPERGRYPH.COM/",
+    desc: "第九边缘网站一览\nHTTPS://ARK.SCH-NIE.COM/",
   },
   {
-    id: "video",
-    en: "VIDEO",
-    cn: "影像资料",
+    id: "Question_Set",
+    en: "QUESTION SET",
+    cn: "问题集",
     logo: "/images/04-media/logo_video.c1de0303.png",
     activeImg: "/images/04-media/video_active.693c91f3.png",
-    desc: "泰拉世界的活动影像记录\nHTTPS://AK.HYPERGRYPH.COM/",
+    desc: "第九边缘测试题合集\nHTTPS://ARK.SCH-NIE.COM/",
   },
 ];
 
 // 定义点击热区的位置 (基于视觉元素的坐标微调)
 const HIT_AREAS = [
   {
-    id: "monster_siren" as Category,
+    id: "books" as Category,
     position: "top-[37%] left-[18%] w-[160px] h-[160px]",
   },
   {
@@ -79,7 +79,7 @@ export default function Media() {
   const $viewIndex = useStore(viewIndex);
   const $readyToTouch = useStore(readyToTouch);
   const [active, setActive] = useState(false);
-  const [currentCat, setCurrentCat] = useState<Category>("monster_siren");
+  const [currentCat, setCurrentCat] = useState<Category>("books");
 
   // 控制是否显示图集详情的状态
   const [showGallery, setShowGallery] = useState(false);
@@ -107,12 +107,12 @@ export default function Media() {
     if (currentCat === "gallery") {
       setShowGallery(true);
       isScrollLocked.set(true); // 锁定主页面滚动
-    } else if (currentCat === "monster_siren") {
-      window.open("https://monster-siren.hypergryph.com/", "_blank");
-    } else if (currentCat === "video") {
-      window.open("https://ak.hypergryph.com/archive/video", "_blank");
-    } else if (currentCat === "operator") {
-      window.open("https://ak.hypergryph.com/archive/dynamicCompile", "_blank");
+    } else if (currentCat === "books") {
+      window.open("https://www.sch-nie.com/core/", "_blank");
+    } else if (currentCat === "Question_Set") {
+      window.open("https://www.sch-nie.com/categories/tests/", "_blank");
+    } else if (currentCat === "website") {
+      window.open("https://monitor.sch-nie.com", "_blank");
     } else {
       console.log(`${currentCat} clicked`);
       // 其他分类的逻辑...
@@ -240,7 +240,7 @@ export default function Media() {
 
               {/* 框(Monster Siren) */}
               <div
-                className={`${currentCat === "monster_siren" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
+                className={`${currentCat === "books" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
               >
                 <div>
                   <div
@@ -280,7 +280,7 @@ export default function Media() {
 
               {/* 框(Operator) */}
               <div
-                className={`${currentCat === "operator" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
+                className={`${currentCat === "website" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
               >
                 <div>
                   <div
@@ -300,7 +300,7 @@ export default function Media() {
 
               {/* 框(Video) */}
               <div
-                className={`${currentCat === "video" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
+                className={`${currentCat === "Question_Set" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
               >
                 <div>
                   <div

@@ -164,7 +164,7 @@ export default function Operator() {
                   PROFILE
                 </span>
                 <span className="text-white/40 font-benderRegular text-xs tracking-[0.2em]">
-                  RHODES ISLAND ://
+                  第九边缘：SCHNIE ://
                 </span>
               </div>
 
@@ -175,45 +175,45 @@ export default function Operator() {
                   <div className="cn-name-display">{currentOp.cnName}</div>
                 </div>
                 <div className="ml-6 h-20">
-                  <img
-                    src={currentOp.logo}
-                    className="block w-auto h-full"
-                    alt="faction"
-                  />
+                  {/*<img*/}
+                  {/*  src={currentOp.logo}*/}
+                  {/*  className="block w-auto h-full"*/}
+                  {/*  alt="faction"*/}
+                  {/*/>*/}
                 </div>
               </div>
 
-              {/* CV 语音展示 */}
-              <div
-                className="voice-section group"
-                onClick={handlePlayVoice}
-                data-playing={isPlaying}
-              >
-                <div className="voice-btn-wrapper">
-                  <div className={`voice-btn ${isPlaying ? "is-playing" : ""}`}>
-                    <svg className="icon" viewBox="0 0 24 24">
-                      {isPlaying ? (
-                        <path d="M6 5h4v14H6zm8 0h4v14h-4z" /> // 暂停
-                      ) : (
-                        <path d="M8 5v14l11-7z" /> // 播放
-                      )}
-                    </svg>
-                  </div>
-                  {/* 装饰外圈 */}
-                  <div className="btn-echo" />
-                </div>
+              {/*/!* CV 语音展示 *!/*/}
+              {/*<div*/}
+              {/*  className="voice-section group"*/}
+              {/*  onClick={handlePlayVoice}*/}
+              {/*  data-playing={isPlaying}*/}
+              {/*>*/}
+              {/*  <div className="voice-btn-wrapper">*/}
+              {/*    <div className={`voice-btn ${isPlaying ? "is-playing" : ""}`}>*/}
+              {/*      <svg className="icon" viewBox="0 0 24 24">*/}
+              {/*        {isPlaying ? (*/}
+              {/*          <path d="M6 5h4v14H6zm8 0h4v14h-4z" /> // 暂停*/}
+              {/*        ) : (*/}
+              {/*          <path d="M8 5v14l11-7z" /> // 播放*/}
+              {/*        )}*/}
+              {/*      </svg>*/}
+              {/*    </div>*/}
+              {/*    /!* 装饰外圈 *!/*/}
+              {/*    <div className="btn-echo" />*/}
+              {/*  </div>*/}
 
-                <div className="voice-info">
-                  <div className="voice-title">CHARACTER VOICE</div>
-                  <div className="voice-name">{currentOp.cv}</div>
-                </div>
+              {/*  <div className="voice-info">*/}
+              {/*    <div className="voice-title">CHARACTER VOICE</div>*/}
+              {/*    <div className="voice-name">{currentOp.cv}</div>*/}
+              {/*  </div>*/}
 
-                <div className="voice-wave-container">
-                  {[...Array(20)].map((_, i) => (
-                    <div key={i} className="wave-bar" />
-                  ))}
-                </div>
-              </div>
+              {/*  <div className="voice-wave-container">*/}
+              {/*    {[...Array(20)].map((_, i) => (*/}
+              {/*      <div key={i} className="wave-bar" />*/}
+              {/*    ))}*/}
+              {/*  </div>*/}
+              {/*</div>*/}
 
               {/* 描述文本 */}
               <div className="description-section">

@@ -109,52 +109,41 @@ export default function WorldOverview({ onItemSelect }: OverviewProps) {
   const [isExiting, setIsExiting] = useState(false);
   const [exitingIndex, setExitingIndex] = useState<number | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
-  const [activeImage, setActiveImage] = useState<string | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const isFirstMove = useRef(true); // 用一个变量来修复首次加载会导致图片位置错误的问题
   const isFirstLoad = useRef(true);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (listRef.current) {
-      const rect = listRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const imgWidth = 1024;
-      const imgHeight = 1024;
-
-      // TODO: 一个奇怪的偏移，需要更好的方法
-      const imgOffsetX = 350;
-      const imgOffsetY = 0;
-      const imgOffsetXPercentage = 75;
-      const imgOffsetYPercentage = 0;
-      const position = {
-        x: x - imgWidth / 2 + (imgOffsetX * imgOffsetXPercentage) / 100,
-        y: y - imgHeight / 2 + (imgOffsetY * imgOffsetYPercentage) / 100,
-      };
-
-      setMousePosition(position);
-
-      const itemHeight = rect.height / items.length;
-      const index = Math.floor(y / itemHeight);
-      if (index >= 0 && index < items.length) {
-        setActiveImage(items[index].imageUrl);
-      } else {
-        setActiveImage(null);
-      }
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setActiveImage(null);
-    isFirstMove.current = true;
-  };
+  
+  // 分页相关状态
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6; // 每页显示5个词条
+  
+  // 计算总页数
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+  
+  // 计算当前页的词条
+  const currentItems = items.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   // 移除了itemAnimationDuration、itemAnimationDelay和initialDelay变量，因为它们不再被使用
 
   const handleItemClick = (index: number) => {
+    // 计算实际的索引位置
+    const actualIndex = (currentPage - 1) * itemsPerPage + index;
     setIsExiting(true);
-    setExitingIndex(index);
+    setExitingIndex(actualIndex);
+  };
+  
+  // 分页处理函数
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   // Import useAnimation at the top of the file with other imports
@@ -187,74 +176,63 @@ export default function WorldOverview({ onItemSelect }: OverviewProps) {
     },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
   return (
-    <motion.div
-      ref={listRef}
-      className="w-[39.875rem] absolute top-[20.3703703704%] left-[9rem] z-10"
-      variants={containerVariants}
-      initial={{ opacity: 0, x: -50 }}
-      animate={isExiting ? "exit" : "enter"}
-      onAnimationComplete={(definition) => {
-        if (isExiting && definition === "exit") {
-          onItemSelect(exitingIndex!);
-          setIsExiting(false);
-          setExitingIndex(null);
-        }
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-    >
-      {items.map(
-        (
-          { title, subTitle }: { title: string; subTitle: string },
-          index: number
-        ) => (
-          <MemoizedItem
-            key={index}
-            title={title}
-            subTitle={subTitle}
-            delay={isFirstLoad.current ? 800 + index * 50 : index * 50}
-            onClick={() => handleItemClick(index)} // 修改这里，使用统一的处理函数
-            isExiting={isExiting}
-            exitingIndex={exitingIndex}
-            index={index}
-          />
-        )
-      )}
-      <AnimatePresence>
-        {activeImage && (
-          <motion.img
-            key={activeImage}
-            src={activeImage}
-            alt="Active item"
-            className="absolute pointer-events-none"
-            variants={imageVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            style={{
-              width: "1024px",
-              height: "1024px",
-              objectFit: "cover",
-              left: `${mousePosition.x}px`,
-              top: `${mousePosition.y}px`,
-              zIndex: -1,
-              filter: "blur(0.2px)",
-            }}
-          />
+    <div className="w-[39.875rem] absolute top-[20.3703703704%] left-[9rem] z-10">
+      <motion.div
+        ref={listRef}
+        className="relative"
+        variants={containerVariants}
+        initial={{ opacity: 0, x: -50 }}
+        animate={isExiting ? "exit" : "enter"}
+        onAnimationComplete={(definition) => {
+          if (isExiting && definition === "exit") {
+            onItemSelect(exitingIndex!);
+            setIsExiting(false);
+            setExitingIndex(null);
+          }
+        }}
+      >
+        {currentItems.map(
+          (
+            { title, subTitle }: { title: string; subTitle: string },
+            index: number
+          ) => (
+            <MemoizedItem
+              key={index}
+              title={title}
+              subTitle={subTitle}
+              delay={isFirstLoad.current ? 800 + index * 50 : index * 50}
+              onClick={() => handleItemClick(index)} // 修改这里，使用统一的处理函数
+              isExiting={isExiting}
+              exitingIndex={exitingIndex}
+              index={index}
+            />
+          )
         )}
-      </AnimatePresence>
-    </motion.div>
+      </motion.div>
+      
+      {/* 分页按钮 */}
+      {totalPages > 1 && (
+        <div className="mt-8 flex justify-between items-center">
+          <button
+            className={`px-4 py-2 bg-[#333] text-white hover:bg-[#444] transition-colors ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+          >
+            上一页
+          </button>
+          <div className="text-white">
+            {currentPage} / {totalPages}
+          </div>
+          <button
+            className={`px-4 py-2 bg-[#333] text-white hover:bg-[#444] transition-colors ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            下一页
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

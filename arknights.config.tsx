@@ -36,7 +36,7 @@ export default {
       { title: "OPERATOR", subtitle: "角色", href: base + "#operator" },
       { title: "WORLD", subtitle: "设定", href: base + "#world" },
       { title: "MEDIA", subtitle: "万象", href: base + "#media" },
-      { title: "MORE", subtitle: "更多内容", href: base + "#more" },
+      { title: "MORE", subtitle: "更多信息", href: base + "#more" },
     ],
     toolbox: {
       Bilibili: "https://b23.tv/e1vviXs",
@@ -143,105 +143,61 @@ export default {
     OPERATOR: {
       data: [
         {
-          id: "kalts",
-          name: "KAL'TSIT",
-          cnName: "凯尔希",
-          cv: "日笠阳子",
-          voice: "/audios/operator/kaltsit_ja.mp3", // 角色语音文件路径
-          desc: "罗德岛最高管理者之一，阿米娅的直接辅导者。罗德岛医疗部门的总负责人。",
-          portrait: "/images/02-operator/kaltsit.png",
-          fullbody: "/images/02-operator/kaltsit_full.png",
-          logo: "/images/02-operator/罗德岛logo.png",
-        },
-        {
-          id: "amiya",
-          name: "AMIYA",
-          cnName: "阿米娅",
-          cv: "黑泽朋世",
-          voice: "/audios/operator/amiya_ja.mp3", // 角色语音文件路径
-          desc: "罗德岛的公开领袖，在内部拥有最高执行权。虽然从外表上看仅仅是个不成熟的少女，但她确实深受所有人的信任。",
-          portrait: "/images/02-operator/amiya.png",
-          fullbody: "/images/02-operator/amiya_full.png",
-          logo: "/images/02-operator/罗德岛logo.png",
-        },
-        {
-          id: "chen",
-          name: "CH'EN",
-          cnName: "陈",
-          cv: "石上静香",
-          voice: "/audios/operator/chen_ja.mp3", // 角色语音文件路径
-          desc: "龙门近卫局特别督察组组长。在龙门近卫局服役期间，对维护龙门治安做出了卓越贡献。现作为重装干员加入罗德岛。",
-          portrait: "/images/02-operator/chen.png",
-          fullbody: "/images/02-operator/chen_full.png",
-          logo: "/images/02-operator/龙门logo.png",
-        },
-        {
-          id: "texas",
-          name: "TEXAS",
-          cnName: "德克萨斯",
-          cv: "田所梓",
-          voice: "/audios/operator/texas_ja.mp3", // 角色语音文件路径
-          desc: "企鹅物流员工。单兵作战能力出众。现于罗德岛担任驻勤干员，并协助进行各种保密任务。",
-          portrait: "/images/02-operator/dekesasi.png",
-          fullbody: "/images/02-operator/dekesasi_full.png",
-          logo: "/images/02-operator/企鹅物流logo.png",
-        },
-        {
-          id: "jessica",
-          name: "JESSICA",
-          cnName: "杰西卡",
-          cv: "广桥凉",
-          voice: "/audios/operator/jessica_ja.mp3", // 角色语音文件路径
-          desc: "黑钢国际正式干员，总是在出发前显得很紧张，但她的同事们知道她会在任务里把每一件事做得足够好。",
-          portrait: "/images/02-operator/jessica.png",
-          fullbody: "/images/02-operator/jessica_full.png",
-          logo: "/images/02-operator/黑钢国际logo.png",
+          id: "SCHNIE",
+          name: "MO XUE",
+          cnName: "墨薛",
+          desc: "诞生于科技的终末，受邀而汇聚成生命的形态。",
+          portrait: "/images/02-operator/moxue.png",
+          fullbody: "/images/02-operator/moxue_full.png",
+
         },
       ],
     },
     WORLD: {
       items: [
         {
-          title: "源石",
-          subTitle: "ORIGINIUMS",
-          imageUrl: "/images/03-world/originiums.png",
+          title: "文明库",
+          subTitle: "CIV DB",
+          imageUrl: "/images/passport.png",
           description:
-            "大地被起因不明的天灾四处肆虐，经由天灾卷过的土地上出现了大量的神秘矿物——「源石」。这种半透明的黑色晶体蕴含着极为庞大的能量，依赖技术的进步，源石被广泛应用于工业、能源与武器制造，推动泰拉文明迈入现代。然而，源石本身也具有极强的致病性，是导致「矿石病」与「感染者」出现的根源。",
+            "文明库最早建设于“启辉计划”后。文明库以时间为索引，记载逝痕文明中发生的一切事物：这甚至包含任意对象的物理活动。这使得其有利于实现“复原”：当逝痕文明因各种原因被摧毁时，文明库的力量将使得“新的”逝痕文明快速恢复到某一被记录的阶段。",
         },
         {
-          title: "源石技艺",
-          subTitle: "ORIGINIUM ARTS",
-          imageUrl: "/images/03-world/originium_arts.png",
+          title: "虚构文明",
+          subTitle: "Fictional CIV",
+          imageUrl: "/images/logo.png",
           description:
-            "源石技艺是指通过刺激源石内部的能量，进而操控、转化物质或意识的特殊技术。它并非传统意义上的魔法，而是建立在源石能量基础上的高度发达科学应用。感染者因体内源石结晶的存在，通常能更直接、更强力地施展源石技艺，但这也会显著加速矿石病的恶化进程。",
+            "虚构文明即逝痕文明以一定的技艺所创造的、完全受控于他们的微型文明。它诞生于“宏鳞企划”后，最早用于约束人们的思想（仅有体验文化的功能）。\n" +
+              "随着技术的发展和管理水平的提高，“虚构文明”的概念越发盛行，普通群众也被允许在“虚构文明”中使用各种技艺与开采资源：此时的“虚构文明”更令人沉迷，且能带来一定的收益。",
         },
         {
-          title: "整合运动",
-          subTitle: "REUNION",
-          imageUrl: "/images/03-world/reunion.png",
+          title: "宇宙移动",
+          subTitle: "Cosmic MVT",
+          imageUrl: "/images/logo.png",
           description:
-            "整合运动是一个由感染者组成的准军事化社会运动组织，旨在终结泰拉社会对感染者长期存在的歧视、压迫与不公。他们以极端的方式追求感染者的尊严与力量，主张「感染者应当为自身身份感到骄傲，并积极夺回属于自己的权利」。该组织在切尔诺伯格事变中达到行动高峰，与罗德岛形成直接对抗。",
+            "在“宏鳞企划”后，“宇宙移动”技术走向成熟，并于“方舟规划”后得到突破。它是批量构建虚构文明的方式之一，同时也是逝痕文明躲避其他文明攻击的主要方式之一。",
         },
         {
-          title: "感染者",
-          subTitle: "INFECTED",
-          imageUrl: "/images/03-world/infected.png",
+          title: "文明输送",
+          subTitle: "CIV TRANS",
+          imageUrl: "/images/logo.png",
           description:
-            "因长期接触源石或其工业衍生产物而患上「矿石病」的患者统称为感染者。该病为不治之症，会在患者体内及体表逐渐生成源石结晶，最终导致器官衰竭与死亡。感染者往往拥有比常人更强的源石技艺潜力，却因疾病的传染性与外貌变化遭受严重的社会歧视、隔离甚至迫害。",
+            "在“方舟规划”后，“文明输送”技术被用于向伪装成“虚构文明”的同阶或高阶文明输送逝痕文明的机体。在逝痕文明发展后期，越来越多的机体主动经文明输送技术前往其他的文明：因为平淡的发展终点让他们厌倦不已，加上这片世界也已无法诞生新的自然生命。",
         },
         {
-          title: "移动城邦",
-          subTitle: "NOMADIC CITY",
-          imageUrl: "/images/03-world/nomadic_city.png",
+          title: "人造生命",
+          subTitle: "AI Exist.",
+          imageUrl: "/images/logo.png",
           description:
-            "由于天灾频繁且难以预测，泰拉大陆的文明发展出独特的「移动城邦」生存方式。这些巨型城市建造在可移动的大型平台之上，能够根据天灾预报整体迁移以规避毁灭性打击。一座完整的移动城邦通常由多个功能城区组成，并以核心城区作为指挥中枢，代表着人类在极端自然环境下的顽强适应能力。",
+            "在绝对先进、自由的科学世界里，一切人道的、浪漫的、虚构的“约束”都不再有意义。先驱者不惜击碎最后的生命底线，使得机器造物突破电流本身的限制：他们正式地将生物与机器结合在一起，编织规划之内的“人造生命”。\n" +
+              " “渐渐地，人类的分工不再重复，所有人都互相关联，人的活动成为了环境本身，人回归了人本来力量。” 技术将人收敛，让生命的出路唯一。曾经的领袖为我们规划出如梦般的蓝图，但这只是对“人造生命”最后的宣言，因为牠们才有资格走到那一刻。",
         },
         {
-          title: "罗德岛",
-          subTitle: "RHODES ISLAND",
-          imageUrl: "/images/03-world/rhodes_island.png",
+          title: "文明塔",
+          subTitle: "CIV TWR",
+          imageUrl: "/images/logo.png",
           description:
-            "罗德岛制药公司表面上是一家致力于研究感染者医疗方案的医药研发机构，实际上是处理感染者相关问题最专业的组织之一。以巨型移动陆行舰为基地，罗德岛招募来自世界各地的感染者与非感染者，提供医疗、生活保障与战斗训练，力求寻找矿石病的治疗方法，并为感染者争取更好的生存处境。",
+              "文明塔是“人造生命”构建的、连接不同低级文明的塔状结构。牠们试图从中找到文明和生命的关联、及取得能够构造一个文明的关键：“纯净的黑核”——只有完整黑核支撑的文明，才能够不断地发展、并诞下自然的生命。",
         },
       ],
     },

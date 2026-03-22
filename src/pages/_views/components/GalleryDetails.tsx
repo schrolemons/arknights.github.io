@@ -65,42 +65,18 @@ const galleryData = [
   {
     id: "01",
     year: "2026",
-    title: "DST",
+    title: "Starry Sky",
     subtitle: "#01#",
     src: "/images/04-media/gallery/2-1.png",
-    desc: "VILLAGE OF THE PAST",
+    desc: "The Starry Sky and the Soul",
   },
   {
     id: "02",
-    year: "2026",
-    title: "DSA",
+    year: "2025",
+    title: "meadow",
     subtitle: "#02#",
     src: "/images/04-media/gallery/2-2.png",
-    desc: "FRONTLINE BASE",
-  },
-  {
-    id: "03",
-    year: "2026",
-    title: "DSE",
-    subtitle: "#03#",
-    src: "/images/04-media/gallery/2-3.png",
-    desc: "RHODES ISLAND",
-  },
-  {
-    id: "04",
-    year: "2026",
-    title: "DSR",
-    subtitle: "#源石与尘土#",
-    src: "/images/04-media/gallery/2-4.png",
-    desc: "WASTELAND",
-  },
-  {
-    id: "05",
-    year: "2026",
-    title: "DSF",
-    subtitle: "#龙门近卫局#",
-    src: "/images/04-media/gallery/2-5.png",
-    desc: "LUNGMEN GUARD",
+    desc: "A View from the Meadow",
   },
 ];
 
@@ -109,7 +85,7 @@ interface GalleryProps {
 }
 
 export default function ArknightsGallery({ onBack }: GalleryProps) {
-  const [currentIndex, setCurrentIndex] = useState(3); // 默认选中第4个 (index 3) 模拟截图
+  const [currentIndex, setCurrentIndex] = useState(0); // 默认选中第1个 (index 0)
   const activeItem = galleryData[currentIndex];
 
   // 键盘左右切换

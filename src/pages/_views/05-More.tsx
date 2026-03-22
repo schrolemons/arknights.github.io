@@ -23,26 +23,12 @@ interface AkCard {
 const AK_CARDS: AkCard[] = [
   {
     id: "01",
-    title: "在线体验",
-    subtitle: "ONLINE EXPERIENCE",
-    img: "/images/05-more/integrated_strategies.jpg",
-    icon: (
-      <img
-        src="/images/05-more/icon-animation.png"
-        alt="Online Experience"
-        className="min-w-8 h-8"
-      />
-    ),
-    onClick: () => (window.location.href = "/BDdraw_DEV/login"),
-  },
-  {
-    id: "02",
     title: "代码仓库",
     subtitle: "REPOSITORY",
-    img: "/images/05-more/reclamation_algorithm.jpg",
+    img: "/images/passport.png",
     icon: (
       <img
-        src="/images/05-more/icon-reclamation_algorithm.png"
+        src="/images/passport.png"
         alt="Repository"
         className="min-w-8 h-8"
       />
@@ -51,10 +37,10 @@ const AK_CARDS: AkCard[] = [
       window.open("https://github.com/Yue-plus/astro-arknights", "_blank"),
   },
   {
-    id: "03",
+    id: "02",
     title: "相关文档",
     subtitle: "DOCUMENTATION",
-    img: "/images/05-more/animation.jpg",
+    img: "/images/passport.png",
     icon: (
       <img
         src="/images/05-more/icon-integrated_strategies.png"
@@ -66,10 +52,10 @@ const AK_CARDS: AkCard[] = [
       window.open("https://arknights.astro.yue.zone/docs/", "_blank"),
   },
   {
-    id: "04",
+    id: "03",
     title: "作者主页",
     subtitle: "AUTHOR PROFILE",
-    img: "/images/05-more/terra_historicus.jpg",
+    img: "/images/passport.png",
     icon: (
       <img
         src="/images/05-more/icon-terra_historicus.png"

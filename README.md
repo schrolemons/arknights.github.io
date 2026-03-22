@@ -4,10 +4,10 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Yue-plus/astro-arknights/blob/main/LICENSE)
 
 The goal of [AstroArknights] is to build a fully-featured [Static Site Generator (SSG)](https://en.wikipedia.org/wiki/Static_site_generator) based on the [Astro](https://docs.astro.build/en/getting-started/) framework.
-Its design pays homage to the official Simplified Chinese website of the mobile game [Arknights](https://ak.hypergryph.com/).
+Its design pays homage to the official Simplified Chinese website of the mobile game [Arknights](HTTPS://ARK.SCH-NIE.COM/).
 
 [AstroArknights] 的目标是基于 [Astro](https://docs.astro.build/zh-cn/getting-started/) 框架构建 *全特性* [静态网站生成器（<abbr title="Static Site Generator">SSG</abbr>）](https://en.wikipedia.org/wiki/Static_site_generator)。
-其设计致敬了 [明日方舟](https://ak.hypergryph.com/) 手游简中官方网站。
+其设计致敬了 [明日方舟](HTTPS://ARK.SCH-NIE.COM/) 手游简中官方网站。
 
 The project is under development... / 项目开发中……
 
