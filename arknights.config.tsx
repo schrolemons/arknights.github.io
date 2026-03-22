@@ -9,19 +9,24 @@ import {
 const base = import.meta.env.BASE_URL;
 
 export default {
-  title: "Arknights",
+  title: "111Arknights",
   description: "",
   language: "zh",
   bgm: {
     autoplay: false,
 
     // https://web.hycdn.cn/arknights/official/_next/static/media/audio/bgm.ea4286.mp3
-    src: base + "audios/bgm.mp3",
+    // src: base + "audios/bgm.mp3",
   },
   navbar: {
     logo: {
       element: () => (
-        <TitleArknights className="w-full h-auto pointer-events-none" />
+          <img
+              src="/images/logo.png"
+              alt="Arknights Logo"
+              style={{ width: '240px', height: 'auto' }} // 直接设置样式
+              className="pointer-events-none"
+          />
       ),
       alt: "Arknights Logo",
     },
