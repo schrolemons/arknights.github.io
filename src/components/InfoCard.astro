@@ -9,11 +9,19 @@ interface Props {
 const base = import.meta.env.BASE_URL;
 const index = Astro.props.index;
 const item = Astro.props.item;
-const thumbnail = base + "info-thumbnail/" + (item?.data?.thumbnail ?? "ACTIVITY.jpg")
+const category = item?.data?.category ?? "未分类";
+
+// 根据不同的 category 配置不同的图片
+const categoryToThumbnail: Record<string, string> = {
+    "微故事": "ACTIVITY.jpg",
+    "事件": "NEWS.jpg",
+    "世界观": "ANNOUNCEMENT.jpg"
+};
+
+const thumbnail = base + "info-thumbnail/" + (item?.data?.thumbnail ?? categoryToThumbnail[category] ?? "ACTIVITY.jpg");
 const title = item?.data?.title ?? item?.id ?? "";
 const href = item ? (base + "blog/" + item.slug) : "";
 const [year, month, day] = item?.id?.split("-") ?? ["yyyy", "MM", "dd"];
-const category = item?.data?.category ?? "未分类"
 ---
 
 {

@@ -16,4 +16,15 @@ export default defineConfig({
     // 添加以下配置以支持 GitHub Pages 部署
     // 将 'astro-arknights' 替换为你的仓库名称
     base: '',
+    
+    // 配置 Sass 使用现代 API
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: "modern"
+                }
+            }
+        }
+    }
 });

@@ -419,7 +419,7 @@ export default function Information() {
             className={`h-[.95em] text-[7rem] text-[#242424] font-oswaldMedium -tracking-wider whitespace-nowrap overflow-hidden absolute top-full left-[9rem] flex items-end portrait:hidden transition-all duration-1000 delay-500
                         ${active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           >
-            <span>BREAKING NEWS</span>
+            <span>KEY INFORMATION</span>
           </div>
 
           <SwiperInfo {...{ swiperIndex }} />

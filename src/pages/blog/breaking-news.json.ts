@@ -44,8 +44,8 @@ export async function GET({params, request}: APIContext) {
                 }
             }) as BreakingNewsItemProps[]
         },
-        {name: "公告", list: getItemsByCategory("公告")},
-        {name: "活动", list: getItemsByCategory("活动")},
-        {name: "新闻", list: getItemsByCategory("新闻")},
+        {name: "世界观", list: getItemsByCategory("世界观")},
+        {name: "事件", list: getItemsByCategory("事件")},
+        {name: "微故事", list: getItemsByCategory("微故事")},
     ]));
 }
