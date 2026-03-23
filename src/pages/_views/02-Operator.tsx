@@ -24,6 +24,7 @@ export default function Operator() {
   const [active, setActive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [logoVisible, setLogoVisible] = useState(true);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const currentOp = useMemo(
@@ -63,6 +64,30 @@ export default function Operator() {
     setActive(isActive);
   }, [$viewIndex, $readyToTouch]);
 
+  // 控制logo闪烁效果
+  useEffect(() => {
+    let timeoutId: number | null = null;
+
+    const toggleVisibility = () => {
+      setLogoVisible(true);
+      // 显示3秒
+      timeoutId = window.setTimeout(() => {
+        setLogoVisible(false);
+        // 消失1秒
+        timeoutId = window.setTimeout(toggleVisibility, 1000);
+      }, 3000);
+    };
+
+    toggleVisibility();
+
+    return () => {
+      // 清理所有的setTimeout
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
+  }, []);
+
   return (
     <div
       className={`w-[100vw] max-w-[180rem] h-full absolute top-0 right-0 bottom-0 left-auto transition-all duration-700 ease-in-out bg-layout overflow-hidden ${
@@ -81,11 +106,11 @@ export default function Operator() {
         <div className="absolute inset-0 mix-blend-overlay" />
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentOp.id}
-            initial={{ opacity: 0, x: 50 }}
+            key={currentOp.id + active}
+            initial={{ opacity: 0, x: -400 }}
             animate={{ opacity: 0.45, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 3, ease: "easeOut", delay: 1 }}
             className="absolute inset-0 flex items-center z-10 "
           >
             <span className="bg-decor-text">{currentOp.name}</span>
@@ -98,11 +123,11 @@ export default function Operator() {
         <AnimatePresence mode="wait">
           {/* 背景大叠影：增加缩放视差和混合模式优化 */}
           <motion.img
-            key={currentOp.id + "_bg"}
+            key={currentOp.id + "_bg" + active}
             src={currentOp.fullbody}
             initial={{
               opacity: 0,
-              x: 60,
+              x: 400,
               scale: 1.5,
               //filter: "blur(20px) grayscale(1)",
               filter: "grayscale(1)",
@@ -115,31 +140,33 @@ export default function Operator() {
               filter: "grayscale(1)",
             }}
             exit={{ opacity: 0, x: -30, transition: { duration: 0.4 } }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 3, ease: "easeOut", delay: 1 }}
             className="absolute right-[-20%] top-[70px] h-[150%] w-auto object-contain mix-blend-color-dodge pointer-events-none select-none"
           />
 
           {/* 主立绘：增加更细腻的物理弹簧效果和落地点偏移 */}
           <motion.img
-            key={currentOp.id}
+            key={currentOp.id + active}
             src={currentOp.fullbody}
-            initial={{ opacity: 0, x: 100, scale: 1 }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              scale: 1,
+            initial={{ opacity: 0, x: 600, scale: 1 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              scale: 1, 
             }}
             exit={{
-              opacity: 0,
-              x: -40,
+              opacity: 0, 
+              x: -40, 
               scale: 1.05, // 消失时轻微放大
               transition: { duration: 0.3 },
             }}
             transition={{
               type: "spring",
-              stiffness: 40, // 降低刚度，让动作更优雅沉稳
-              damping: 15, // 适中的阻尼防止抖动过大
+              stiffness: 20, // 降低刚度，让动作更优雅沉稳
+              damping: 10, // 适中的阻尼防止抖动过大
               mass: 1,
+              duration: 3,
+              delay: 1
             }}
             className="relative bottom-[-25rem] h-[125%] w-auto object-contain drop-shadow-[-20px_20px_50px_rgba(0,0,0,0.7)] select-none"
           />
@@ -176,11 +203,13 @@ export default function Operator() {
                   <div className="cn-name-display">{currentOp.cnName}</div>
                 </div>
                 <a href={currentOp.url.replace('{id}', currentOp.id)} target="_blank" className="ml-6 h-20 block no-underline">
-                  <img
-                      src={currentOp.logo}
-                      className="block w-auto h-full"
-                     alt="faction"
-                  />
+                  {logoVisible && (
+                    <img
+                        src={currentOp.logo}
+                        className="block w-auto h-full transition-opacity duration-200"
+                        alt="faction"
+                    />
+                  )}
                 </a>
         </div>
 

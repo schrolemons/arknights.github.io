@@ -105,7 +105,7 @@ const galleryData = [
     year: "2026",
     title: "罗德岛",
     subtitle: "#罗德岛基地#",
-    src: "/images/04-media/gallery/rhodes_island.png",
+    src: "/images/04-media/gallery/01.png",
     desc: "RHODES ISLAND",
   },
   // 更多数据项...

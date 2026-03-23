@@ -46,15 +46,11 @@ function Welcome() {
             src={import.meta.env.BASE_URL + "images/no_account_info.png"}
             alt="无账号信息"/>
 
-    const slogan = arknightsConfig?.navbar?.ownerInfo?.slogan
-        ? <div
+    const slogan = <div
             className="w-[10.75rem] portrait:w-[17.75rem] text-[1rem] portrait:text-[1.625rem] font-bold mt-8 ml-11 portrait:ml-[8.5rem] break-words hyphens-auto text-ellipsis">
             {/* TODO: 换个字体 */}
-            {arknightsConfig.navbar.ownerInfo.slogan}
+            {arknightsConfig?.navbar?.ownerInfo?.slogan}
         </div>
-        : <img className="w-[10.75rem] portrait:w-[17.75rem] h-auto ml-[2.875rem] portrait:ml-[8rem] block"
-               src={import.meta.env.BASE_URL + "images/stroke_text-rhodes_island.png"}
-               alt="Rhodes Island"/>
 
     return <>
         <Divider>WELCOME</Divider>
