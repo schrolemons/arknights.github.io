@@ -89,7 +89,11 @@ export default function WorldDetails({
             animate="animate"
             transition={{ delay: 0.3 }}
           >
-            {item.description}
+            {item.description.split('\n').map((paragraph, index) => (
+              <p key={index} style={{ textIndent: '2em', margin: '0 0 1em 0' }}>
+                {paragraph}
+              </p>
+            ))}
           </motion.div>
         </div>
 

@@ -17,7 +17,8 @@ export default function PageTracker() {
     const tinyIndexDuration = 260
     const tinyIndex = useMemo(() => {
         const currentMonth = new Date().getMonth() + 1
-        return `// ${currentMonth.toString().padStart(2, "0")} / ${(new Date().getFullYear() % 100).toString().padStart(2, "0")}`
+        const currentDate = new Date().getDate()
+        return `// ${currentMonth.toString().padStart(2, "0")} / ${currentDate.toString().padStart(2, "0")}`
     }, [])
 
     const microInfoElement = useRef<HTMLDivElement>(null)

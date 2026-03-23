@@ -16,6 +16,7 @@ import { directions } from "../../components/store/lineDecoratorStore";
 // -scss
 
 import "../../_styles/Operator/base.scss";
+import {IconArrow} from "../../components/SvgIcons.tsx";
 
 export default function Operator() {
   const $viewIndex = useStore(viewIndex);
@@ -174,17 +175,17 @@ export default function Operator() {
                   <div className="name-display">{currentOp.name}</div>
                   <div className="cn-name-display">{currentOp.cnName}</div>
                 </div>
-                <div className="ml-6 h-20">
-                  {/*<img*/}
-                  {/*  src={currentOp.logo}*/}
-                  {/*  className="block w-auto h-full"*/}
-                  {/*  alt="faction"*/}
-                  {/*/>*/}
-                </div>
-              </div>
+                <a href={currentOp.url} target="_blank" className="ml-6 h-20 block no-underline">
+                  <img
+                      src={currentOp.logo}
+                      className="block w-auto h-full"
+                     alt="faction"
+                  />
+                </a>
+        </div>
 
-              {/*/!* CV 语音展示 *!/*/}
-              {/*<div*/}
+        {/*/!* CV 语音展示 *!/*/}
+        {/*<div*/}
               {/*  className="voice-section group"*/}
               {/*  onClick={handlePlayVoice}*/}
               {/*  data-playing={isPlaying}*/}
@@ -218,6 +219,7 @@ export default function Operator() {
               {/* 描述文本 */}
               <div className="description-section">
                 <div className="desc-border" />
+                   <div  onClick={() => window.open("https://arknights.astro.yue.zone/docs/", "_blank")}/>
                 <p className="desc-text">{currentOp.desc}</p>
               </div>
             </motion.div>

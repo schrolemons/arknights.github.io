@@ -25,8 +25,11 @@ export default function Index() {
     const $readyToTouch = useStore(readyToTouch)
     const [active, setActive] = useState($viewIndex === 0)
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const [showLeftMask, setShowLeftMask] = useState(false);
+    const [showRightMask, setShowRightMask] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
     const [hls, setHls] = useState<Hls | null>(null);
+    const maskIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         if (videoRef.current) {
@@ -64,10 +67,52 @@ export default function Index() {
         if (isActive) {
             directions.set({top: false, right: true, bottom: true, left: false})
             videoRef.current?.play();
+            
+            // 启动遮罩周期性显示/隐藏
+            const maskCycle = () => {
+                // 显示遮罩
+                setShowLeftMask(true);
+                setTimeout(() => {
+                    setShowRightMask(true);
+                }, 150);
+                
+                // 2秒后隐藏遮罩
+                setTimeout(() => {
+                    setShowLeftMask(false);
+                    setTimeout(() => {
+                        setShowRightMask(false);
+                    }, 150);
+                    
+                    // 5秒后再次显示遮罩，形成循环
+                    setTimeout(maskCycle, 5000);
+                }, 2000);
+            };
+            
+            // 开始循环
+            maskCycle();
+            
+            // 保存循环引用，以便在需要时清除
+            maskIntervalRef.current = setInterval(() => {}, 1000); // 占位定时器
         } else {
             videoRef.current?.pause();
+            // 清除定时器
+            if (maskIntervalRef.current) {
+                clearInterval(maskIntervalRef.current);
+                maskIntervalRef.current = null;
+            }
+            // 重置遮罩状态
+            setShowLeftMask(false);
+            setShowRightMask(false);
         }
         setActive(isActive)
+        
+        // 清理函数
+        return () => {
+            if (maskIntervalRef.current) {
+                clearInterval(maskIntervalRef.current);
+                maskIntervalRef.current = null;
+            }
+        };
     }, [$viewIndex, $readyToTouch])
     // TODO: 使用m3u8
     return <div className={"w-[100vw] max-w-[180rem] h-full absolute top-0 right-0 bottom-0 left-0 z-[2]"
@@ -88,9 +133,9 @@ export default function Index() {
         />
         {/* TODO: <canvas> */}
         <div className={"w-[52.5rem] portrait:w-[18.75rem] h-[60.75rem] portrait:h-[12rem] absolute left-0 bottom-0 bg-mask-block portrait:bg-mask-block-m bg-[auto_110%] portrait:bg-[auto_100%] bg-[100%_0] transition-opacity duration-[.6s] ease-linear "
-            + (active ? "delay-[2s] opacity-[.78]" : "opacity-0")}/>
+            + (active && showLeftMask ? "opacity-[.78]" : "opacity-0")}/>
         <div className={"w-[52.5rem] portrait:w-[5.75rem] h-[60.75rem] portrait:h-[12rem] absolute left-full bottom-0 bg-mask-block portrait:bg-mask-block-m bg-[auto_110%] portrait:bg-[auto_100%] bg-no-repeat translate-x-[-14.75rem] portrait:translate-x-[-3.75rem] transition-opacity duration-[.6s] ease-linear "
-            + (active ? "delay-[2.3s] opacity-25" : "opacity-0")}/>
+            + (active && showRightMask ? "opacity-25" : "opacity-0")}/>
         <PortraitBottomGradientMask/>
         <div className={"absolute left-[4.5rem] portrait:left-[2rem] bottom-[2.75rem] portrait:bottom-[3rem]"
             + " transition-transform duration-1000"}/>

@@ -21,6 +21,7 @@ export type OperatorData = {
   cv: string;
   voice: string; // 角色语音文件路径
   desc: string;
+  url: string;
   portrait: string;
   logo: string;
   fullbody: string;
