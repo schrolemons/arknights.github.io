@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "@nanostores/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   viewIndex,
   readyToTouch,
@@ -15,8 +16,7 @@ interface CategoryData {
   id: Category;
   en: string;
   cn: string;
-  logo: string;
-  activeImg: string;
+  info:string;
   desc: string;
 }
 
@@ -25,32 +25,32 @@ const CATEGORIES: CategoryData[] = [
     id: "books",
     en: "SEABLUE REVERY",
     cn: "第九边缘：溯梦蓝海",
-    logo: "/images/04-media/logo_books.27beba82.png",
-    activeImg: "/images/04-media/books_active.8f01230d.png",
+    info:"第九边缘设定集。完成于2025年7月。\n" +
+        "记载2025年及以前第九边缘的绝大部分作品，拥有良好的阅读结构。",
     desc: "第九边缘官方作品\nHTTPS://ARK.SCH-NIE.COM/",
   },
   {
     id: "gallery",
     en: "GALLERY",
     cn: "插画珍藏",
-    logo: "/images/04-media/logo_gallery.08a04a01.png",
-    activeImg: "/images/04-media/gallery_active.d45cfc72.png",
+    info:"展示来自OPERATOR-RUIFOX所描绘的世界。\n" +
+        "画廊可以记载这些作品的痕迹，但在这之前，它们均已被安稳地留存在了一个温暖的地方。",
     desc: "记录在这篇大地上的点滴瞬间\nHTTPS://ARK.SCH-NIE.COM/",
   },
   {
     id: "website",
     en: "WEBSITE",
     cn: "网站构建",
-    logo: "/images/04-media/logo_operator.c6543e50.png",
-    activeImg: "/images/04-media/operator_active.d697ef2d.png",
+    info:"第九边缘网站状况监视器。\n" +
+        "建立于2025年10月，展示第九边缘全部网站的可访问性。",
     desc: "第九边缘网站一览\nHTTPS://ARK.SCH-NIE.COM/",
   },
   {
     id: "Question_Set",
     en: "QUESTION SET",
     cn: "问题集",
-    logo: "/images/04-media/logo_video.c1de0303.png",
-    activeImg: "/images/04-media/video_active.693c91f3.png",
+    info:"第九边缘标准化认知测试，及其他“协作者”上传的测试。\n" +
+        "结合第九边缘的世界观、自然观、价值观所制定的测试题合集。",
     desc: "第九边缘测试题合集\nHTTPS://ARK.SCH-NIE.COM/",
   },
 ];
@@ -155,13 +155,13 @@ export default function Media() {
         >
           {/* 背景水印 */}
           <div className="absolute bottom-10 left-10 text-[180px] font-black text-white/5 leading-none select-none pointer-events-none">
-            ABOUT TERRA
+            ABOUT SCHNIE
           </div>
 
           {/* 左侧侧边导航 */}
           <div className="absolute top-1/4 left-16 z-20">
             <h2 className="text-white text-xl font-bold mb-6 tracking-tighter">
-              ABOUT TERRA
+              ABOUT SCHNIE
             </h2>
             <div className="flex flex-col gap-4">
               {CATEGORIES.map((cat) => (
@@ -208,115 +208,54 @@ export default function Media() {
                 ))}
               </div>
 
-              {/* 基础桌子贴图 */}
-              <img
-                src="/images/04-media/about_terra.44839d14.png"
-                className="absolute inset-0 w-full h-full object-contain opacity-80"
-                alt="base"
-              />
-
-              {/* 动态高光层 */}
-              <div className="absolute inset-0 transition-all duration-700">
-                {CATEGORIES.map((cat) => (
-                  <img
-                    key={cat.id}
-                    src={cat.activeImg}
-                    className={`absolute z-30 inset-0 w-full h-full object-contain transition-opacity duration-500 ${currentCat === cat.id ? "opacity-100" : "opacity-0"}`}
-                    alt={cat.id}
-                  />
-                ))}
-              </div>
-              {/* 浮动的Logo标识 */}
-              <div className="absolute inset-0 transition-all duration-700">
-                {CATEGORIES.map((cat) => (
-                  <img
-                    key={cat.id}
-                    src={cat.logo}
-                    className={`absolute z-40 inset-0 w-full h-full object-contain transition-opacity duration-500 ${currentCat === cat.id ? "opacity-100" : "opacity-0"}`}
-                    alt={cat.id}
-                  />
-                ))}
-              </div>
-
-              {/* 框(Monster Siren) */}
-              <div
-                className={`${currentCat === "books" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
-              >
-                <div>
-                  <div
-                    className="absolute top-[37%] left-[18%] w-[100px] h-[100px] bg-ark-blue z-10"
-                    style={{ boxShadow: "inset 0 2px 6px rgba(0,0,0,0.6)" }}
-                  />
-                  <div
-                    className="absolute top-[43%] left-[20%] w-[140px] h-[140px] border-8 border-white z-20"
-                    style={{
-                      boxShadow: `12px 16px 32px rgba(0, 0, 0, 0.65), 6px 8px 20px rgba(0, 0, 0, 0.45), 3px 4px 12px rgba(0, 0, 0, 0.30), -2px -2px 16px rgba(60, 180, 220, 0.18)`,
-                      transition:
-                        "all 700ms ease-in-out, box-shadow 800ms ease-out",
-                    }}
-                  />
-                </div>
+              {/* 中央info显示 */}
+              <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeData.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="relative text-white text-center max-w-3xl px-8"
+                  >
+                    {/* 背景效果 */}
+                    <div className="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-2xl -z-10"></div>
+                   
+                    
+                    {/* 装饰元素 */}
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.2, duration: 0.5 }}
+                      className="mb-6"
+                    >
+                      <div className="w-24 h-1 bg-cyan-400 mx-auto"></div>
+                    </motion.div>
+                    
+                    {/* 文字内容 */}
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3, duration: 0.7 }}
+                      className="text-xl leading-relaxed tracking-wide font-light whitespace-pre-line"
+                    >
+                      {activeData.info}
+                    </motion.p>
+                    
+                    {/* 底部装饰 */}
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.4, duration: 0.5 }}
+                      className="mt-6"
+                    >
+                      <div className="w-24 h-1 bg-cyan-400 mx-auto"></div>
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
-              {/* 框(Gallery) */}
-              <div
-                className={`${currentCat === "gallery" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
-              >
-                <div>
-                  <div
-                    className="absolute top-[0%] left-[25%] w-[130px] h-[130px] bg-ark-blue"
-                    style={{ boxShadow: "inset 0 2px 6px rgba(0,0,0,0.6)" }}
-                  />
-                  <div
-                    className="absolute top-[10%] left-[32%] w-[140px] h-[140px] border-8 border-white"
-                    style={{
-                      boxShadow: `12px 16px 32px rgba(0, 0, 0, 0.65), 6px 8px 20px rgba(0, 0, 0, 0.45), 3px 4px 12px rgba(0, 0, 0, 0.30), -2px -2px 16px rgba(60, 180, 220, 0.18)`,
-                      transition:
-                        "all 700ms ease-in-out, box-shadow 800ms ease-out",
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* 框(Operator) */}
-              <div
-                className={`${currentCat === "website" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
-              >
-                <div>
-                  <div
-                    className="absolute top-[17%] left-[67%] w-[100px] h-[100px] bg-ark-blue"
-                    style={{ boxShadow: "inset 0 2px 6px rgba(0,0,0,0.6)" }}
-                  />
-                  <div
-                    className="absolute top-[22%] left-[70%] w-[160px] h-[140px] border-8 border-white"
-                    style={{
-                      boxShadow: `12px 16px 32px rgba(0, 0, 0, 0.65), 6px 8px 20px rgba(0, 0, 0, 0.45), 3px 4px 12px rgba(0, 0, 0, 0.30), -2px -2px 16px rgba(60, 180, 220, 0.18)`,
-                      transition:
-                        "all 700ms ease-in-out, box-shadow 800ms ease-out",
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* 框(Video) */}
-              <div
-                className={`${currentCat === "Question_Set" ? "opacity-100 scale-100" : "opacity-0 scale-110"} transition-all duration-500 ease-in-out origin-center absolute inset-0 `}
-              >
-                <div>
-                  <div
-                    className="absolute top-[62%] left-[57%] w-[100px] h-[100px] bg-ark-blue"
-                    style={{ boxShadow: "inset 0 2px 6px rgba(0,0,0,0.6)" }}
-                  />
-                  <div
-                    className="absolute top-[67%] left-[60%] w-[180px] h-[180px] border-8 border-white"
-                    style={{
-                      boxShadow: `12px 16px 32px rgba(0, 0, 0, 0.65), 6px 8px 20px rgba(0, 0, 0, 0.45), 3px 4px 12px rgba(0, 0, 0, 0.30), -2px -2px 16px rgba(60, 180, 220, 0.18)`,
-                      transition:
-                        "all 700ms ease-in-out, box-shadow 800ms ease-out",
-                    }}
-                  />
-                </div>
-              </div>
             </div>
           </div>
 

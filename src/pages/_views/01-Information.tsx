@@ -96,7 +96,7 @@ function SwiperInfo({ swiperIndex }: { swiperIndex: number }) {
               transition={{ delay: 0 }}
               whileHover={{ scale: 1.02, backgroundColor: "#ffffff" }}
               whileTap={{ scale: 0.98 }}
-              className="w-[14.375rem] h-[3.75rem] pr-7 pl-4 mt-8 text-black no-underline whitespace-nowrap bg-ark-blue flex items-center cursor-pointer transition-colors duration-300 portrait:hidden group"
+              className="w-[14.375rem] h-[3.75rem] pr-7 pl-4 mt-12 text-black no-underline whitespace-nowrap bg-ark-blue flex items-center cursor-pointer transition-colors duration-300 portrait:hidden group"
             >
               <div className="transition-transform duration-300 group-hover:translate-x-1">
                 <div className="text-[1.25rem] font-black leading-none">

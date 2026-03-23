@@ -58,7 +58,7 @@ const AK_CARDS: AkCard[] = [
     img: "/images/passport.png",
     icon: (
       <img
-        src="/images/05-more/icon-terra_historicus.png"
+        src="/images/05-more/icon-SCHNIE_historicus.png"
         alt="Author Profile"
         className="min-w-6 h-6"
       />
