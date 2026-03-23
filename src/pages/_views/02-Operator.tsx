@@ -57,12 +57,12 @@ export default function Operator() {
   }, [currentOp]);
 
   useEffect(() => {
-    const isActive = $viewIndex === 2 && $readyToTouch;
+    const isActive = $viewIndex === 2;
     if (isActive) {
       directions.set({ top: true, right: true, bottom: true, left: false });
     }
     setActive(isActive);
-  }, [$viewIndex, $readyToTouch]);
+  }, [$viewIndex]);
 
   // 控制logo闪烁效果
   useEffect(() => {
@@ -104,18 +104,9 @@ export default function Operator() {
       {/* 1. 背景层 (装饰大字 & 网格) */}
       <div className="absolute inset-0 pointer-events-none select-none">
         <div className="absolute inset-0 mix-blend-overlay" />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentOp.id + active}
-            initial={{ opacity: 0, x: -400 }}
-            animate={{ opacity: 0.45, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 3, ease: "easeOut", delay: 1 }}
-            className="absolute inset-0 flex items-center z-10 "
-          >
-            <span className="bg-decor-text">{currentOp.name}</span>
-          </motion.div>
-        </AnimatePresence>
+        <div className="absolute inset-0 flex items-center z-10 opacity-45">
+          <span className="bg-decor-text">{currentOp.name}</span>
+        </div>
       </div>
 
       {/* 2. 主立绘展示层 (含叠影) */}
@@ -123,7 +114,7 @@ export default function Operator() {
         <AnimatePresence mode="wait">
           {/* 背景大叠影：增加缩放视差和混合模式优化 */}
           <motion.img
-            key={currentOp.id + "_bg" + active}
+            key={currentOp.id + "_bg" + active+currentIndex}
             src={currentOp.fullbody}
             initial={{
               opacity: 0,
@@ -140,13 +131,20 @@ export default function Operator() {
               filter: "grayscale(1)",
             }}
             exit={{ opacity: 0, x: -30, transition: { duration: 0.4 } }}
-            transition={{ duration: 3, ease: "easeOut", delay: 1 }}
+            transition={{ 
+              type: "spring",
+              stiffness: 20,
+              damping: 10,
+              mass: 1,
+              duration: 3, 
+              delay: 1 
+            }}
             className="absolute right-[-20%] top-[70px] h-[150%] w-auto object-contain mix-blend-color-dodge pointer-events-none select-none"
           />
 
           {/* 主立绘：增加更细腻的物理弹簧效果和落地点偏移 */}
           <motion.img
-            key={currentOp.id + active}
+            key={currentOp.id + currentIndex}
             src={currentOp.fullbody}
             initial={{ opacity: 0, x: 600, scale: 1 }}
             animate={{ 
@@ -177,10 +175,10 @@ export default function Operator() {
 
       <div className="OPS_info_block mb-0 h-full flex items-center">
         {/* 3. 左侧资料信息区 */}
-        <div className="absolute bottom-[-7rem] z-20 h-full flex flex-col justify-center pl-[6rem] portrait:pl-[2rem] w-[45rem] portrait:w-full">
+        <div className="absolute bottom-[-2rem] z-20 h-full flex flex-col justify-center pl-[6rem] portrait:pl-[2rem] w-[45rem] portrait:w-full">
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentOp.id}
+              key={currentOp.id + currentIndex}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -30 }}
@@ -249,7 +247,11 @@ export default function Operator() {
               <div className="description-section">
                 <div className="desc-border" />
                    <div  onClick={() => window.open("https://arknights.astro.yue.zone/docs/", "_blank")}/>
-                <p className="desc-text">{currentOp.desc}</p>
+                {currentOp.desc.split('\n').map((sentence, index) => (
+                  <p key={index} className="desc-text" style={{ textIndent: '2em', margin: '0 0 0.5em 0' }}>
+                    {sentence}
+                  </p>
+                ))}
               </div>
             </motion.div>
           </AnimatePresence>

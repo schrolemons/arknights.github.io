@@ -149,11 +149,37 @@ export default {
           cnName: "墨薛",
           logo: "/images/logo.png",
           url:"https://ark.sch-nie.com/operator"+"/{id}",
-          desc: "诞生于科技的终末，受邀而汇聚成生命的形态。",
+          desc: "诞生于科技的终末，受邀而汇聚成生命的形态。橘黄色的外表下，是金色生命与黑白技艺的相互对抗。\n" +
+              "祂理性，平和，坚毅，在众多文明的事迹中游弋，汇聚着希望与批判，直达第九个边缘的虹光之处。\n" ,
           portrait: "/images/02-operator/moxue.png",
           fullbody: "/images/02-operator/moxue_full.png",
 
         },
+        {
+          id: "moxue",
+          name: "MO XUE",
+          cnName: "墨薛",
+          logo: "/images/logo.png",
+          url:"https://ark.sch-nie.com/operator"+"/{id}",
+          desc: "诞生于科技的终末，受邀而汇聚成生命的形态。橘黄色的外表下，是金色生命与黑白技艺的相互对抗。\n" +
+              "祂理性，平和，坚毅，在众多文明的事迹中游弋，汇聚着希望与批判，直达第九个边缘的虹光之处。\n" ,
+          portrait: "/images/02-operator/moxue.png",
+          fullbody: "/images/02-operator/moxue_full.png",
+
+        },
+        {
+          id: "moxue",
+          name: "MO XUE",
+          cnName: "墨薛",
+          logo: "/images/logo.png",
+          url:"https://ark.sch-nie.com/operator"+"/{id}",
+          desc: "诞生于科技的终末，受邀而汇聚成生命的形态。橘黄色的外表下，是金色生命与黑白技艺的相互对抗。\n" +
+              "祂理性，平和，坚毅，在众多文明的事迹中游弋，汇聚着希望与批判，直达第九个边缘的虹光之处。\n" ,
+          portrait: "/images/02-operator/moxue.png",
+          fullbody: "/images/02-operator/moxue_full.png",
+
+        },
+          
       ],
     },
     WORLD: {
