@@ -1,0 +1,47 @@
+---
+import {getCollection} from "astro:content";
+import InfoLayout from "../../layouts/InfoLayout.astro";
+import GoBackTool from "../../components/GoBackTool";
+import DocumentIndexUL from "../../components/DocumentIndexUL.astro";
+
+export async function getStaticPaths() {
+    const allOperator = await getCollection("operator")
+
+    return allOperator.map(entry => ({
+        params: {slug: entry.slug},
+        props: {entry}
+    }))
+}
+
+const {entry} = Astro.props;
+const {Content, headings} = await entry.render();
+const goBackHref = import.meta.env.BASE_URL + "operator"
+const tabTitle = entry?.data?.title ?? "无标题"
+---
+
+<InfoLayout title="OPERATOR" subTitle="干员" {...{tabTitle}}>
+    <div class="max-w-[80.75rem] h-full mx-auto overflow-y-auto transition-[height] duration-300">
+        {headings && headings.length > 0 && (
+            <details class="pb-8 landscape:hidden">
+                <summary class="text-black bg-white text-[24px] font-bold px-3 font-oswaldMedium">
+                    Document Index - 文档索引
+                </summary>
+                <DocumentIndexUL {...{headings}}/>
+            </details>
+        )}
+        <article>
+            <Content/>
+        </article>
+    </div>
+
+    {headings && headings.length > 0 && (
+        <nav slot="aside-header">
+            <h2 class="text-black bg-white text-[1.75rem] font-bold px-3 font-oswaldMedium">
+                Document Index - 文档索引
+            </h2>
+            <DocumentIndexUL {...{headings}}/>
+        </nav>
+    )}
+
+    <GoBackTool slot="tool-panel" client:load {...{goBackHref}}/>
+</InfoLayout>

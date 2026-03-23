@@ -1,0 +1,33 @@
+---
+import {getCollection} from 'astro:content'
+import InfoLayout from "../../layouts/InfoLayout.astro"
+import GoBackTool from "../../components/GoBackTool"
+
+const base = import.meta.env.BASE_URL
+const allOperator = await getCollection("operator");
+---
+
+<InfoLayout title="OPERATOR" subTitle="干员信息" tabTitle="干员">
+    <div id="operator-container" class="h-full flex-auto mr-[-16px] overflow-x-hidden overflow-y-scroll">
+        <div id="operator-scroll-wrapper">
+            <nav id="operator-content" class="max-w-[80.75rem] mx-auto pt-8">
+                {allOperator.length > 0 ? (
+                    allOperator.map((item) => (
+                        <div class="w-full mb-16">
+                            <a target="_blank" href={`${base}operator/${item.slug}`} title={item.data.title ?? item.id} class="w-full block relative">
+                                <div class="w-full p-8 bg-black rounded-lg border-2 border-white flex items-center justify-center">
+                                    <div class="text-white text-4xl font-bold text-center">{item.data.title ?? item.id}</div>
+                                </div>
+                            </a>
+                        </div>
+                    ))
+                ) : (
+                    <div class="text-center text-2xl font-n15eBold pt-12 pb-16">无干员数据</div>
+                )}
+            </nav>
+            <div class="text-center text-2xl font-n15eBold pt-12 pb-16">- END -</div>
+        </div>
+    </div>
+
+    <GoBackTool slot="tool-panel" client:load/>
+</InfoLayout>

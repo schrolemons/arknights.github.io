@@ -23,4 +23,10 @@ export const config = {
             // TODO:
         })
     }),
+    "operator": defineCollection({
+        type: "content",
+        schema: z.object({
+            title: z.string()
+        })
+    }),
 }
