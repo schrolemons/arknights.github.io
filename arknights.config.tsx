@@ -148,7 +148,7 @@ export default {
           name: "MO XUE",
           cnName: "墨薛",
           logo: "/images/logo.png",
-          url:"https://ark.sch-nie.com/operator"+"/{id}.md",
+          url:"https://ark.sch-nie.com/operator"+"/{id}",
           desc: "诞生于科技的终末，受邀而汇聚成生命的形态。",
           portrait: "/images/02-operator/moxue.png",
           fullbody: "/images/02-operator/moxue_full.png",

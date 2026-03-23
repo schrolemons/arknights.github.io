@@ -175,7 +175,7 @@ export default function Operator() {
                   <div className="name-display">{currentOp.name}</div>
                   <div className="cn-name-display">{currentOp.cnName}</div>
                 </div>
-                <a href={currentOp.url} target="_blank" className="ml-6 h-20 block no-underline">
+                <a href={currentOp.url.replace('{id}', currentOp.id)} target="_blank" className="ml-6 h-20 block no-underline">
                   <img
                       src={currentOp.logo}
                       className="block w-auto h-full"
