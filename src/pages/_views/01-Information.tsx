@@ -259,20 +259,22 @@ function BreakingNewsList() {
           </motion.div>
         </AnimatePresence>
 
-        <a
-          target="_blank"
-          href={base + "blog/"}
-          className={
-            "w-[7.625rem] portrait:w-[11.125rem]" +
-            " h-[1.5rem] portrait:h-[1.75rem] text-[.875rem] portrait:text-[1.3125rem] text-[#d2d2d2]" +
-            " hover:text-black font-benderBold whitespace-nowrap bg-[#585858] hover:bg-white" +
-            " px-[.625rem] portrait:px-3 mt-8 portrait:mt-10 flex items-center cursor-pointer" +
-            " transition-all duration-300 transform hover:translate-x-1"
-          }
-        >
-          <span>READ MORE</span>
-          <IconArrow className={"w-[.4375rem] ml-auto flex-none"} />
-        </a>
+        {category[categoryIndex] !== "公告" && (
+          <a
+            target="_blank"
+            href={base + "blog/?category=" + category[categoryIndex]}
+            className={
+              "w-[7.625rem] portrait:w-[11.125rem]" +
+              " h-[1.5rem] portrait:h-[1.75rem] text-[.875rem] portrait:text-[1.3125rem] text-[#d2d2d2]" +
+              " hover:text-black font-benderBold whitespace-nowrap bg-[#585858] hover:bg-white" +
+              " px-[.625rem] portrait:px-3 mt-8 portrait:mt-10 flex items-center cursor-pointer" +
+              " transition-all duration-300 transform hover:translate-x-1"
+            }
+          >
+            <span>READ MORE</span>
+            <IconArrow className={"w-[.4375rem] ml-auto flex-none"} />
+          </a>
+        )}
       </div>
     </>
   );

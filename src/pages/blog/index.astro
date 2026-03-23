@@ -19,7 +19,7 @@ function getThumbnailPath(category: string | undefined, thumbnail: string | unde
 }
 ---
 
-<InfoLayout title="BLOG" subTitle="博客" tabTitle="博客">
+<InfoLayout title="Universe" subTitle="宇宙" tabTitle="宇宙">
     <div id="blog-container" class="h-full flex-auto mr-[-16px] overflow-x-hidden overflow-y-scroll">
         <div id="blog-scroll-wrapper">
             <nav id="blog-content" class="max-w-[80.75rem] mx-auto">
@@ -117,34 +117,64 @@ function getThumbnailPath(category: string | undefined, thumbnail: string | unde
         const categoryBtns = document.querySelectorAll('.category-btn');
         const blogItems = document.querySelectorAll('.blog-item');
         
+        // 从 URL 获取筛选参数
+        function getSelectedCategoryFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('category') || 'all';
+        }
+        
+        // 更新 URL 中的筛选参数
+        function updateUrl(selectedCategory) {
+            const url = new URL(window.location.href);
+            if (selectedCategory === 'all') {
+                url.searchParams.delete('category');
+            } else {
+                url.searchParams.set('category', selectedCategory);
+            }
+            window.history.pushState({}, '', url);
+        }
+        
+        // 执行筛选操作
+        function performFilter(selectedCategory) {
+            // 移除所有按钮的 active 类
+            categoryBtns.forEach(b => {
+                b.classList.remove('active', 'bg-ark-blue');
+                b.classList.add('bg-[#5a5a5a]');
+            });
+            
+            // 添加当前按钮的 active 类
+            const activeBtn = document.querySelector(`.category-btn[data-category="${selectedCategory}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-ark-blue');
+                activeBtn.classList.remove('bg-[#5a5a5a]');
+            }
+            
+            // 筛选文章
+            blogItems.forEach(item => {
+                if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // 重置滚动位置
+            const blogContainer = document.getElementById('blog-container');
+            if (blogContainer) {
+                blogContainer.scrollTop = 0;
+            }
+        }
+        
+        // 初始化页面时，根据 URL 参数执行筛选
+        const initialCategory = getSelectedCategoryFromUrl();
+        performFilter(initialCategory);
+        
+        // 为筛选按钮添加点击事件
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                // 移除所有按钮的 active 类
-                categoryBtns.forEach(b => {
-                    b.classList.remove('active', 'bg-ark-blue');
-                    b.classList.add('bg-[#5a5a5a]');
-                });
-                
-                // 添加当前按钮的 active 类
-                this.classList.add('active', 'bg-ark-blue');
-                this.classList.remove('bg-[#5a5a5a]');
-                
                 const selectedCategory = this.dataset.category;
-                
-                // 筛选文章
-                blogItems.forEach(item => {
-                    if (selectedCategory === 'all' || item.dataset.category === selectedCategory) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                
-                // 重置滚动位置
-                const blogContainer = document.getElementById('blog-container');
-                if (blogContainer) {
-                    blogContainer.scrollTop = 0;
-                }
+                updateUrl(selectedCategory);
+                performFilter(selectedCategory);
             });
         });
     });

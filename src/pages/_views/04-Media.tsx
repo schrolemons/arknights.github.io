@@ -17,6 +17,7 @@ interface CategoryData {
   en: string;
   cn: string;
   info:string;
+  bg:string;
   desc: string;
 }
 
@@ -25,6 +26,7 @@ const CATEGORIES: CategoryData[] = [
     id: "books",
     en: "SEABLUE REVERY",
     cn: "第九边缘：溯梦蓝海",
+    bg:"/images/04-media/gallery/2-1.png",
     info:"第九边缘设定集。完成于2025年7月。\n" +
         "记载2025年及以前第九边缘的绝大部分作品，拥有良好的阅读结构。",
     desc: "第九边缘官方作品\nHTTPS://ARK.SCH-NIE.COM/",
@@ -33,7 +35,8 @@ const CATEGORIES: CategoryData[] = [
     id: "gallery",
     en: "GALLERY",
     cn: "插画珍藏",
-    info:"展示来自OPERATOR-RUIFOX所描绘的世界。\n" +
+    bg:"/images/04-media/gallery/2-1.png",
+    info:"展示来自 [OPERATOR-RUIFOX] 所描绘的世界。\n" +
         "画廊可以记载这些作品的痕迹，但在这之前，它们均已被安稳地留存在了一个温暖的地方。",
     desc: "记录在这篇大地上的点滴瞬间\nHTTPS://ARK.SCH-NIE.COM/",
   },
@@ -41,6 +44,7 @@ const CATEGORIES: CategoryData[] = [
     id: "website",
     en: "WEBSITE",
     cn: "网站构建",
+    bg:"/images/04-media/gallery/2-2.png",
     info:"第九边缘网站状况监视器。\n" +
         "建立于2025年10月，展示第九边缘全部网站的可访问性。",
     desc: "第九边缘网站一览\nHTTPS://ARK.SCH-NIE.COM/",
@@ -49,6 +53,7 @@ const CATEGORIES: CategoryData[] = [
     id: "Question_Set",
     en: "QUESTION SET",
     cn: "问题集",
+    bg:"/images/04-media/gallery/2-2.png",
     info:"第九边缘标准化认知测试，及其他“协作者”上传的测试。\n" +
         "结合第九边缘的世界观、自然观、价值观所制定的测试题合集。",
     desc: "第九边缘测试题合集\nHTTPS://ARK.SCH-NIE.COM/",
@@ -151,12 +156,22 @@ export default function Media() {
           style={{
             backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)`,
             backgroundSize: "40px 40px",
+            backgroundPosition: "center",
+            backgroundRepeat: "repeat",
           }}
         >
-          {/* 背景水印 */}
-          <div className="absolute bottom-10 left-10 text-[180px] font-black text-white/5 leading-none select-none pointer-events-none">
-            ABOUT SCHNIE
-          </div>
+          {/* 背景图片 - 使用伪元素实现透明度控制 */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `url(${activeData.bg})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              opacity: 0.3,
+            }}
+          />
+
 
           {/* 左侧侧边导航 */}
           <div className="absolute top-1/4 left-16 z-20">
@@ -240,7 +255,12 @@ export default function Media() {
                       transition={{ delay: 0.3, duration: 0.7 }}
                       className="text-xl leading-relaxed tracking-wide font-light whitespace-pre-line"
                     >
-                      {activeData.info}
+                      {activeData.info.split(/\[|\]/).map((part, index) => {
+                        if (index % 2 === 1) {
+                          return <span key={index} style={{ color: '#22d3ee', fontWeight: 'bold' }}>{part}</span>;
+                        }
+                        return part;
+                      })}
                     </motion.p>
                     
                     {/* 底部装饰 */}

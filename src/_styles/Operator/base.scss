@@ -41,7 +41,7 @@
 //   //filter: grayscale(0);
 // }
 
-// 干员头像边框样式
+// 人物头像边框样式
 .thumbnail .image-container {
   position: absolute;
   top: 0;
@@ -53,7 +53,7 @@
   box-sizing: border-box;
 }
 
-// 干员名称样式
+// 人物名称样式
 .thumbnail .name-label {
   position: absolute;
   left: 0.375rem;
@@ -67,7 +67,7 @@
   font-family: "SourceHanSans-Medium";
 }
 
-// 干员选择指示器样式
+// 人物选择指示器样式
 .selected-indicator {
   position: absolute;
   top: -0.5rem;
@@ -206,7 +206,7 @@
   mix-blend-mode: overlay;
 }
 
-// 干员选择列表容器
+// 人物选择列表容器
 .operator-list-container {
   margin-top: 1.25rem;
   margin-left: -2rem;

@@ -5,24 +5,27 @@ import GoBackTool from "../../components/GoBackTool"
 
 const base = import.meta.env.BASE_URL
 const allOperator = await getCollection("operator");
+
+// 提取唯一的 ID
+const uniqueIds = [...new Set(allOperator.map(item => item.data.id))];
 ---
 
-<InfoLayout title="OPERATOR" subTitle="干员信息" tabTitle="干员">
+<InfoLayout title="OPERATOR" subTitle="人物信息" tabTitle="人物">
     <div id="operator-container" class="h-full flex-auto mr-[-16px] overflow-x-hidden overflow-y-scroll">
         <div id="operator-scroll-wrapper">
             <nav id="operator-content" class="max-w-[80.75rem] mx-auto pt-8">
                 {allOperator.length > 0 ? (
                     allOperator.map((item) => (
-                        <div class="w-full mb-16">
-                            <a target="_blank" href={`${base}operator/${item.slug}`} title={item.data.title ?? item.id} class="w-full block relative">
+                        <div class="w-full mb-16 operator-item" data-id={item.data.id}>
+                            <a target="_blank" href={`${base}operator/${item.slug}`} title={item.data.title ?? item.data.id} class="w-full block relative">
                                 <div class="w-full p-8 bg-black rounded-lg border-2 border-white flex items-center justify-center">
-                                    <div class="text-white text-4xl font-bold text-center">{item.data.title ?? item.id}</div>
+                                    <div class="text-white text-4xl font-bold text-center">{item.data.title ?? item.data.id}</div>
                                 </div>
                             </a>
                         </div>
                     ))
                 ) : (
-                    <div class="text-center text-2xl font-n15eBold pt-12 pb-16">无干员数据</div>
+                    <div class="text-center text-2xl font-n15eBold pt-12 pb-16">无人物数据</div>
                 )}
             </nav>
             <div class="text-center text-2xl font-n15eBold pt-12 pb-16">- END -</div>
@@ -30,4 +33,79 @@ const allOperator = await getCollection("operator");
     </div>
 
     <GoBackTool slot="tool-panel" client:load/>
+
+    <div slot="aside-header">
+        <div class="p-4">
+            <h3 class="text-white text-xl font-bold mb-4">人物 筛选</h3>
+            <div class="flex flex-col space-y-2">
+                <button class="id-btn active px-4 py-2 bg-ark-blue text-white rounded-md" data-id="all">全部</button>
+                {uniqueIds.map((id) => (
+                    <button class="id-btn px-4 py-2 bg-[#5a5a5a] text-white rounded-md" data-id={id}>{id}</button>
+                ))}
+            </div>
+        </div>
+    </div>
 </InfoLayout>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 筛选功能
+        const idBtns = document.querySelectorAll('.id-btn');
+        const operatorItems = document.querySelectorAll('.operator-item');
+        
+        // 从 URL 获取筛选参数
+        function getSelectedIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || 'all';
+        }
+        
+        // 更新 URL 中的筛选参数
+        function updateUrl(selectedId) {
+            const url = new URL(window.location.href);
+            if (selectedId === 'all') {
+                url.searchParams.delete('id');
+            } else {
+                url.searchParams.set('id', selectedId);
+            }
+            window.history.pushState({}, '', url);
+        }
+        
+        // 执行筛选操作
+        function performFilter(selectedId) {
+            // 移除所有按钮的 active 类
+            idBtns.forEach(b => {
+                b.classList.remove('active', 'bg-ark-blue');
+                b.classList.add('bg-[#5a5a5a]');
+            });
+            
+            // 添加当前按钮的 active 类
+            const activeBtn = document.querySelector(`.id-btn[data-id="${selectedId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'bg-ark-blue');
+                activeBtn.classList.remove('bg-[#5a5a5a]');
+            }
+            
+            // 筛选人物
+            operatorItems.forEach(item => {
+                if (selectedId === 'all' || item.dataset.id === selectedId) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // 初始化页面时，根据 URL 参数执行筛选
+        const initialId = getSelectedIdFromUrl();
+        performFilter(initialId);
+        
+        // 为筛选按钮添加点击事件
+        idBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const selectedId = this.dataset.id;
+                updateUrl(selectedId);
+                performFilter(selectedId);
+            });
+        });
+    });
+</script>
