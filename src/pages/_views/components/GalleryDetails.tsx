@@ -78,6 +78,14 @@ const galleryData = [
     src: "/images/04-media/gallery/2-2.png",
     desc: "A View from the Meadow",
   },
+  {
+    id: "03",
+    year: "2026",
+    title: "sea",
+    subtitle: "#03#",
+    src: "/images/04-media/gallery/2-3.png",
+    desc: "A View from the Sea",
+  },
 ];
 
 interface GalleryProps {

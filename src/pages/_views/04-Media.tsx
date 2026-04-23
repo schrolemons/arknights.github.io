@@ -44,7 +44,7 @@ const CATEGORIES: CategoryData[] = [
     id: "website",
     en: "WEBSITE",
     cn: "网站构建",
-    bg:"/images/04-media/gallery/2-2.png",
+    bg:"/images/04-media/gallery/2-3.png",
     info:"第九边缘网站状况监视器。\n" +
         "建立于2025年10月，展示第九边缘全部网站的可访问性。",
     desc: "第九边缘网站一览\nHTTPS://ARK.SCH-NIE.COM/",
