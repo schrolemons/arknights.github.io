@@ -35,7 +35,7 @@ const CATEGORIES: CategoryData[] = [
     id: "gallery",
     en: "GALLERY",
     cn: "插画珍藏",
-    bg:"/images/04-media/gallery/2-1.png",
+    bg:"/images/04-media/gallery/2-2.png",
     info:"展示来自 [OPERATOR-RUIFOX] 所描绘的世界。\n" +
         "画廊可以记载这些作品的痕迹，但在这之前，它们均已被安稳地留存在了一个温暖的地方。",
     desc: "记录在这篇大地上的点滴瞬间\nHTTPS://ARK.SCH-NIE.COM/",
@@ -53,7 +53,7 @@ const CATEGORIES: CategoryData[] = [
     id: "Question_Set",
     en: "QUESTION SET",
     cn: "问题集",
-    bg:"/images/04-media/gallery/2-2.png",
+    bg:"/images/04-media/be.png",
     info:"第九边缘标准化认知测试，及其他“协作者”上传的测试。\n" +
         "结合第九边缘的世界观、自然观、价值观所制定的测试题合集。",
     desc: "第九边缘测试题合集\nHTTPS://ARK.SCH-NIE.COM/",
